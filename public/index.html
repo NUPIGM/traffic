@@ -13,12 +13,11 @@
       name="description"
       content="测试您的网速，查询您的IP地址，同时具备网络延迟实时检测"
     />
-    <!-- <link type="text/tailwindcss" rel="stylesheet" href="style.css" /> -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="output.css" />
     <script type="module" src="script.js" defer></script>
     <script type="module" src="font/iconfont.js" defer></script>
   </head>
-  <body class="text-slate-600">
+  <body class="text-slate-600 font-custom">
     <header
       class="flex h-16 max-w-5xl items-center justify-between px-6 sticky top-0 z-40 w-full mx-auto border-b border-slate-200 bg-white/80 backdrop-blur"
     >
@@ -40,15 +39,15 @@
 
     <main class="mx-auto max-w-5xl px-4 py-8">
       <h1
-        class="relative left-4 flex gap-1 w-fit mr-8 font-bold top-4 p-3 px-5 text-xl text-white rounded-2xl bg-indigo-500"
+        class="relative left-4 flex gap-1 w-fit mr-8 font-bold top-4 p-3 px-5 text-xl text-white rounded-2xl bg-blue-500"
       >
         <svg class="ico w-6 h-6 inline" aria-hidden="true">
-          <use id="ico-button" xlink:href="#icon-tishi"></use>
+          <use xlink:href="#icon-tishi"></use>
         </svg>
         在线网络测速与流量消耗工具
       </h1>
       <ul
-        class="mb-8 rounded-2xl bg-indigo-500 p-10 text-white/90 shadow-xl shadow-brand-500/10 sm:p-8 list-disc marker:text-yellow-300"
+        class="mb-8 rounded-2xl bg-blue-500 backdrop-blur p-10 text-white/90 shadow-xl shadow-brand-500/10 sm:p-8 list-disc marker:text-yellow-300"
       >
         <li>虽支持可自定义地址 但无法请求跨域链接</li>
         <li>速度不满意？请尝试手动切换节点，加大运行线程</li>
@@ -145,7 +144,7 @@
             <div
               class="flex items-center gap-2 border-b border-slate-100 pb-4 mb-6"
             >
-              <svg class="ico w-6 h-6" aria-hidden="true">
+              <svg class="ico w-5 h-5" aria-hidden="true">
                 <use xlink:href="#icon-shezhi"></use>
               </svg>
               <h2 class="text-base font-bold text-slate-900">配置测速参数</h2>
@@ -163,7 +162,7 @@
                   "
                   name="test-url"
                   id="select"
-                  class="mt-1.5 block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 disabled:bg-slate-50 disabled:text-slate-400"
+                  class="mt-1.5 block w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-sm shadow-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 disabled:bg-slate-50 disabled:text-slate-400"
                 >
                   <option value="" id="diy">自定义</option>
                   <option
@@ -306,7 +305,7 @@
 
               <button
                 id="do"
-                class="w-full bg-sky-400 flex justify-center items-center gap-2 rounded-xl p-3 font-bold text-white shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all"
+                class="w-full bg-blue-500 flex justify-center items-center gap-2 rounded-xl p-3 font-bold text-white shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all"
               >
                 <svg class="ico w-6 h-6" aria-hidden="true">
                   <use id="ico-button" xlink:href="#icon-daochu1024-15"></use>
@@ -325,7 +324,7 @@
               class="flex items-center gap-2 border-b border-slate-100 pb-4 mb-4"
             >
               <svg class="ico w-4 h-4" aria-hidden="true">
-                <use id="ico-button" xlink:href="#icon-dingwei"></use>
+                <use xlink:href="#icon-dingwei"></use>
               </svg>
               <h2 class="text-base font-bold text-slate-900">网络出口及检测</h2>
             </div>
@@ -350,12 +349,12 @@
             </ul>
           </div>
 
-          <div class="rounded-xl bg-slate-900 p-6 text-slate-400 shadow-sm">
+          <div class="rounded-xl bg-indigo-950 p-6 text-slate-400 shadow-sm">
             <h3
-              class="text-sm font-bold text-white mb-2.5 flex items-center gap-1.5"
+              class="text-sm font-bold text-white mb-2 flex items-center gap-1.5"
             >
               <svg class="ico w-4 h-4" aria-hidden="true">
-                <use id="ico-button" xlink:href="#icon-bangzhu"></use>
+                <use xlink:href="#icon-wenhaoxiao"></use>
               </svg>
               高级使用技巧
             </h3>

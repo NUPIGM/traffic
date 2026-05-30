@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@font-face {
+  font-family: Arturito;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("./font/Arturito-Slab-2.ttf") format("truetype");
+}
+@font-face {
+  font-family: MaoKenZhuYuanTi;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("./font/MaoKenZhuYuanTi-MaokenZhuyuanTi-2.ttf") format("truetype");
+}
+@theme {
+  --font-custom: "Arturito", "MaoKenZhuYuanTi", sans-serif;
+}

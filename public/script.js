@@ -88,7 +88,7 @@ function local() {
     .then((response) => response.json())
     .then((data) => {
       let tag = document.getElementById("cn");
-      tag.innerHTML = data.ip + "<p></p>" + data.country;
+      tag.innerHTML = data.data.ip + "<p></p>" + "China";
     });
 }
 local();
@@ -116,7 +116,7 @@ async function total() {
   let r = show(
     all_down_sum + all_down,
     ["B", "KB", "MB", "GB", "TB", "PB"],
-    [0, 0, 1, 2, 2, 2],
+    [0, 0, 2, 3, 2, 2],
   );
   document.getElementById("consume").innerText = r;
 
@@ -129,7 +129,7 @@ async function total() {
     document.getElementById("consume").innerText = show(
       all_down_sum,
       ["B", "KB", "MB", "GB", "TB", "PB"],
-      [0, 0, 1, 2, 2, 2],
+      [0, 0, 2, 3, 2, 2],
     );
   }
 }
@@ -138,7 +138,6 @@ async function time() {
     times++;
     run_time.innerText = times;
     setTimeout(time, 1000);
-  } else {
   }
 }
 async function start() {

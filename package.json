@@ -5,9 +5,13 @@
   "scripts": {
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
-    "start": "wrangler dev"
+    "tailwind": "npx @tailwindcss/cli -i ./public/input.css -o ./public/output.css"
   },
   "devDependencies": {
     "wrangler": "^4.95.0"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.0",
+    "tailwindcss": "^4.3.0"
   }
 }
