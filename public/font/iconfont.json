@@ -1,0 +1,121 @@
+{
+  "id": "5187582",
+  "name": "流量消耗器",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "流量消耗器",
+  "glyphs": [
+    {
+      "icon_id": "47715630",
+      "name": "定位-copy",
+      "font_class": "dingwei1-copy",
+      "unicode": "ec62",
+      "unicode_decimal": 60514
+    },
+    {
+      "icon_id": "1252",
+      "name": "帮助",
+      "font_class": "bangzhu",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "383623",
+      "name": "跳转",
+      "font_class": "tiaozhuan",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "1183130",
+      "name": "定位",
+      "font_class": "dingwei",
+      "unicode": "e675",
+      "unicode_decimal": 58997
+    },
+    {
+      "icon_id": "1727531",
+      "name": "307感叹号-三角框",
+      "font_class": "gantanhao-sanjiaokuang",
+      "unicode": "e8eb",
+      "unicode_decimal": 59627
+    },
+    {
+      "icon_id": "2076399",
+      "name": "问号小",
+      "font_class": "wenhaoxiao",
+      "unicode": "e8c8",
+      "unicode_decimal": 59592
+    },
+    {
+      "icon_id": "5387478",
+      "name": "停止",
+      "font_class": "tingzhi",
+      "unicode": "eae1",
+      "unicode_decimal": 60129
+    },
+    {
+      "icon_id": "6102954",
+      "name": "定位",
+      "font_class": "dingwei1",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
+      "icon_id": "7192360",
+      "name": "设置",
+      "font_class": "shezhi",
+      "unicode": "e722",
+      "unicode_decimal": 59170
+    },
+    {
+      "icon_id": "7335536",
+      "name": "暂停",
+      "font_class": "zanting",
+      "unicode": "eb30",
+      "unicode_decimal": 60208
+    },
+    {
+      "icon_id": "22227207",
+      "name": "开始",
+      "font_class": "daochu1024-15",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "23949503",
+      "name": "提示",
+      "font_class": "tishi",
+      "unicode": "ec61",
+      "unicode_decimal": 60513
+    },
+    {
+      "icon_id": "10834424",
+      "name": "网速检测",
+      "font_class": "wangsujiance",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "17881184",
+      "name": "总流量消耗",
+      "font_class": "zongliuliangxiaohao",
+      "unicode": "e6fa",
+      "unicode_decimal": 59130
+    },
+    {
+      "icon_id": "27374451",
+      "name": "倒计时",
+      "font_class": "daojishi",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "28604828",
+      "name": "平台并发数-01",
+      "font_class": "pingtaibingfashu-01",
+      "unicode": "e67f",
+      "unicode_decimal": 59007
+    }
+  ]
+}
