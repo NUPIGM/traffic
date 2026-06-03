@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="zh-CN" class="h-full bg-slate-50">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>流量消耗器</title>
+    <link rel="icon" href="favicon.ico" />
+    <meta
+      name="keywords"
+      content="IP查询,在线测速,网速测试,流量杀手,流量消耗器"
+    />
+    <meta
+      name="description"
+      content="测试您的网速，查询您的IP地址，同时具备网络延迟实时检测"
+    />
+    <link rel="stylesheet" href="output.css" />
+    <script type="module" src="script.js" defer></script>
+    <script type="module" src="/font/iconfont.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body
+    class="text-slate-600 font-custom dark:bg-slate-800 dark:text-slate-300"
+  >
+    <header
+      class="flex h-16 max-w-5xl items-center justify-between px-6 sticky top-0 z-40 w-full mx-auto border-b border-slate-200 bg-white/80 backdrop-blur dark:bg-gray-700 dark:border-b-0"
+    >
+      <div class="flex items-end gap-2">
+        <svg class="icon w-6 h-6" aria-hidden="true">
+          <use xlink:href="#icon-zongliuliangxiaohao"></use>
+        </svg>
+        <h1 class="text-lg font-bold text-slate-900 dark:text-white">
+          流量消耗器
+        </h1>
+      </div>
+      <a href="/" title="">
+        <svg class="icon w-6 h-6" aria-hidden="true">
+          <use xlink:href="#icon-tiaozhuan"></use>
+        </svg>
+      </a>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-4 py-8">
+      <h1
+        class="relative left-4 flex gap-1 w-fit mr-8 font-bold top-4 p-3 px-5 text-xl text-white rounded-2xl bg-blue-500 dark:bg-gray-700"
+      >
+        <svg class="ico w-6 h-6 inline" aria-hidden="true">
+          <use xlink:href="#icon-tishi"></use>
+        </svg>
+        在线网络测速与流量消耗工具
+      </h1>
+      <ul
+        class="mb-8 rounded-2xl bg-blue-500 backdrop-blur p-10 text-white/90 shadow-xl shadow-brand-500/10 sm:p-8 list-disc marker:text-yellow-300 dark:bg-gray-700"
+      >
+        <li>虽支持可自定义地址 但无法请求跨域链接</li>
+        <li>速度不满意？请尝试手动切换节点，加大运行线程</li>
+        <li>消耗机场流量，建议使用海外节点，速度可能会更快</li>
+        <li>
+          点击总流量板块可设置流量上限，以防止流量丢失，为你的流量保驾护航
+        </li>
+        <li>
+          手机套餐内含头条系、阿里系、百度系等定向流量，填写免流量资源地址或选择对应定向包的测速节点，可消耗定向流量(非百分百准确)
+        </li>
+        <li>
+          手机端挂后台一段时间后停止运行，请让当前浏览器页面或APP保持在前台运行或锁住当前程序，避免被手机自动清理
+        </li>
+      </ul>
+      <!-- 统计模块 -->
+      <div
+        class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8 text-slate-500 *:dark:bg-gray-700 *:dark:text-white"
+      >
+        <!-- 1 -->
+        <div
+          class="rounded-xl bg-white p-5 shadow-sm flex items-center justify-between"
+        >
+          <div>
+            <p class="font-medium">已消耗流量</p>
+            <p id="consume" class="mt-2 text-2xl font-bold">-</p>
+          </div>
+          <div class="rounded-lg bg-blue-50 p-3 text-green-600">
+            <svg class="icon w-6 h-6" aria-hidden="true">
+              <use xlink:href="#icon-zongliuliangxiaohao"></use>
+            </svg>
+          </div>
+        </div>
+        <!-- 2 -->
+        <div
+          class="rounded-xl bg-white p-5 shadow-sm flex items-center justify-between"
+        >
+          <div>
+            <p class="font-medium">实时网速</p>
+            <p id="current-speed" class="mt-2 text-2xl font-bold">-</p>
+          </div>
+          <div class="rounded-lg bg-amber-50 p-3">
+            <svg class="icon w-6 h-6" aria-hidden="true">
+              <use xlink:href="#icon-wangsujiance"></use>
+            </svg>
+          </div>
+        </div>
+        <!-- 3 -->
+        <div
+          class="rounded-xl bg-white p-5 shadow-sm flex items-center justify-between"
+        >
+          <div>
+            <p class="font-medium">活跃并发数</p>
+            <p id="active-threads" class="mt-2 text-2xl font-bold">-</p>
+          </div>
+          <div class="rounded-lg bg-indigo-50 p-3">
+            <svg class="icon w-6 h-6" aria-hidden="true">
+              <use xlink:href="#icon-pingtaibingfashu-01"></use>
+            </svg>
+          </div>
+        </div>
+        <!-- 4 -->
+        <div
+          class="rounded-xl bg-white p-5 shadow-sm flex items-center justify-between"
+        >
+          <div>
+            <p class="font-medium">运行计时</p>
+            <p id="run-time" class="mt-2 text-2xl font-bold">-</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 p-3">
+            <svg class="icon w-6 h-6" aria-hidden="true">
+              <use xlink:href="#icon-daojishi"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <!-- 配置模块 -->
+      <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div class="lg:col-span-2 space-y-6">
+          <div class="rounded-xl bg-white dark:bg-gray-700 p-6 shadow-sm">
+            <div
+              class="flex items-center gap-2 border-b border-slate-100 pb-4 mb-6"
+            >
+              <svg class="ico w-5 h-5" aria-hidden="true">
+                <use xlink:href="#icon-shezhi"></use>
+              </svg>
+              <h2 class="text-base font-bold text-slate-900">配置测速参数</h2>
+            </div>
+
+            <div class="space-y-5">
+              <div>
+                <label class="block text-sm font-semibold"
+                  >测速节点网址 (URL)</label
+                >
+                <select
+                  onchange="
+                    document.getElementById('link').value =
+                      this.options[this.selectedIndex].value
+                  "
+                  name="test-url"
+                  id="select"
+                  class="mt-1.5 block w-full px-3 py-2 rounded-lg border text-slate-500 border-slate-300 text-sm shadow-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 disabled:bg-slate-50 disabled:text-slate-400"
+                >
+                  <option value="" id="diy">自定义</option>
+                  <option
+                    selected="selected"
+                    value="https://issuecdn.baidupcs.com/issue/netdisk/apk/BaiduNetdiskSetup_wap_share.apk"
+                  >
+                    百度CDN [高速]
+                  </option>
+                  <option
+                    value="https://kodo-toolbox.qiniu.com/kodo-browser-Linux-x64-v1.0.17.zip"
+                  >
+                    七牛云CDN [高速]
+                  </option>
+                  <option
+                    value="https://img.alicdn.com/imgextra/i1/O1CN01xA4P9S1JsW2WEg0e1_!!6000000001084-2-tps-2880-560.png"
+                  >
+                    阿里CDN
+                  </option>
+                  <option
+                    value="https://game.gtimg.cn/images/nz/web202106/index/bc_part1.gif?0.3190485611376561"
+                  >
+                    腾讯CDN
+                  </option>
+                  <option
+                    value="https://lf9-cdn-tos.bytecdntp.com/cdn/yuntu-index/1.0.4/case/maiteng/detailbg.png"
+                  >
+                    字节跳动
+                  </option>
+                  <option
+                    value="https://img10.360buyimg.com/live/jfs/t1/128947/12/26918/1361527/6260e71bE0ee85af5/ecaa17ea8dd3dddb.jpg"
+                  >
+                    京东
+                  </option>
+                  <option
+                    value="https://pic-bucket.ws.126.net/photo/0003/2022-04-24/H5N2082C00AJ0003NOS.jpg"
+                  >
+                    网易
+                  </option>
+                  <option
+                    value="https://cnbj0.fds.api.xiaomi.com/b2c-data-mishop/9b9d95e1ece27d5ec75205e5fe719ba5.apk"
+                  >
+                    小米
+                  </option>
+                  <option
+                    value="https://wwwstatic.vivo.com.cn/vivoportal/files/resource/funtouch/1651200648928/images/os2-jude-video.mp4"
+                  >
+                    Vivo
+                  </option>
+                  <option
+                    value="https://d.musicapp.migu.cn/upload/fbpt_rsync_apps/local/signed/MobileMusic7220/MobileMusic7220_0140068.apk"
+                  >
+                    咪咕音乐
+                  </option>
+                  <option
+                    value="https://img.cmvideo.cn/publish/noms/2022/10/14/1O3VIGPVP6HTS.jpg"
+                  >
+                    咪咕视频
+                  </option>
+                  <option
+                    value="https://img.mcloud.139.com/material_prod/material_media/20221128/1669626861087.png"
+                  >
+                    和彩云
+                  </option>
+                  <option
+                    value="https://vod-origin-rjzy.gdoss.xstore.ctyun.cn/07da9eb52ad948c7b58b760003c0006b.mp4"
+                  >
+                    天翼云
+                  </option>
+                  <option value="https://cachefly.cachefly.net/100mb.test">
+                    Cachefly Test [Global]
+                  </option>
+                  <option
+                    value="https://speed.cloudflare.com/__down?bytes=500000000"
+                  >
+                    Cloudflare Speed [Global]
+                  </option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-slate-500"
+                  >自定义节点物理地址</label
+                >
+                <input
+                  oninput="
+                    document.getElementById('select').selectedIndex = 0;
+                    document.getElementById('diy').value = this.value;
+                  "
+                  class="mt-1.5 block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 disabled:bg-slate-50"
+                  value="https://issuecdn.baidupcs.com/issue/netdisk/apk/BaiduNetdiskSetup_wap_share.apk"
+                  type="url"
+                  name="url"
+                  id="link"
+                />
+              </div>
+              <!-- 并发、总量 -->
+              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div>
+                  <label class="block text-sm font-semibold text-slate-500"
+                    >多线程并发数</label
+                  >
+                  <input
+                    id="threads"
+                    type="number"
+                    value="6"
+                    min="1"
+                    max="32"
+                    class="mt-1.5 block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 disabled:bg-slate-50"
+                  />
+                  <p class="mt-1 text-xs text-slate-400">
+                    建议范围 4 - 32 线程
+                  </p>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-slate-700"
+                    >限额自动停止 (MB)</label
+                  >
+                  <input
+                    id="max-consume"
+                    type="number"
+                    placeholder="留空或0代表无限制"
+                    class="mt-1.5 block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 disabled:bg-slate-50"
+                  />
+                  <p class="mt-1 text-xs text-slate-400">
+                    达到该设定的流量值将自动终止
+                  </p>
+                </div>
+              </div>
+              <!-- 免责声明 -->
+              <div
+                class="rounded-lg bg-amber-50 p-3.5 border border-amber-200/60 flex items-start gap-2.5"
+              >
+                <svg class="ico w-14 h-6" aria-hidden="true">
+                  <use xlink:href="#icon-gantanhao-sanjiaokuang"></use>
+                </svg>
+                <p class="text-xs text-amber-800 leading-relaxed">
+                  <strong>免责声明：</strong
+                  >此测速原理是利用客户端循环高频异步抓取各大云厂商CDN节点公开大数据包。测试将饱满您的网络下行信道，请勿在公共敏感网络、校园网或限速计费网络中长时间开启。
+                </p>
+              </div>
+
+              <button
+                id="do"
+                class="w-full bg-blue-500 flex justify-center items-center gap-2 rounded-xl p-3 font-bold text-white shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all"
+              >
+                <svg class="ico w-6 h-6" aria-hidden="true">
+                  <use id="ico-button" xlink:href="#icon-daochu1024-15"></use>
+                </svg>
+                <span> 开启 </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- 检测 -->
+        <div class="space-y-6">
+          <div class="rounded-xl bg-white dark:bg-gray-700 p-6 shadow-sm">
+            <div
+              class="flex items-center gap-2 border-b border-slate-100 pb-4 mb-4"
+            >
+              <svg class="ico w-4 h-4" aria-hidden="true">
+                <use xlink:href="#icon-dingwei"></use>
+              </svg>
+              <h2
+                class="text-base font-bold text-slate-900 dark:text-slate-300"
+              >
+                网络出口及检测
+              </h2>
+            </div>
+
+            <ul class="divide-y divide-slate-100 text-sm">
+              <li class="flex items-center justify-between py-3">
+                <span class="text-slate-500 font-medium">出口IP信息</span>
+                <span
+                  class="font-mono text-slate-500 text-right font-semibold"
+                  id="ip-info"
+                  >延迟</span
+                >
+              </li>
+              <li class="flex items-center justify-between py-3">
+                <span class="text-slate-500 font-medium" id="cn">中国</span>
+                <span
+                  class="font-mono font-bold dark:text-slate-400"
+                  id="delay-cn"
+                  >--</span
+                >
+              </li>
+              <li class="flex items-center justify-between py-3">
+                <span class="text-slate-500 font-medium" id="gb">国际</span>
+                <span
+                  class="font-mono font-bold dark:text-slate-400"
+                  id="delay-gb"
+                  >--</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="rounded-xl bg-indigo-950 p-6 text-slate-400 shadow-sm">
+            <h3
+              class="text-sm font-bold text-white mb-2 flex items-center gap-1.5"
+            >
+              <svg class="ico w-4 h-4" aria-hidden="true">
+                <use xlink:href="#icon-wenhaoxiao"></use>
+              </svg>
+              高级使用技巧
+            </h3>
+            <ul class="space-y-2 text-xs list-disc pl-4 leading-relaxed">
+              <li>觉得网速跑不满？尝试逐步增加“多线程并发数”。</li>
+              <li>当手机屏幕处于常亮且前台焦点时，浏览器测速性能最高。</li>
+              <li>测速时如遇卡顿属多线程抢占单核性能正常现象。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      class="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8 border-t border-slate-200 text-center text-xs text-slate-400"
+    >
+      <p>&copy; 2026 流量杀手. Powered by Tailwind CSS.</p>
+    </footer>
+  </body>
+</html>

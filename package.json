@@ -5,7 +5,7 @@
   "scripts": {
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
-    "tailwind": "npx @tailwindcss/cli -i ./public/input.css -o ./public/output.css"
+    "tailwind": "NODE_OPTIONS=\"--no-deprecation\" npx @tailwindcss/cli -i ./public/traffic/input.css -o ./public/traffic/output.css"
   },
   "devDependencies": {
     "wrangler": "^4.95.0"

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>NDJSON 按 bundleID 提取域名、IP</title>
+    <link rel="icon" href="favicon.svg" />
+    <link rel="stylesheet" href="Draw-iOS-rules.css" />
+    <script src="Draw-iOS-rules.js" defer></script>
+  </head>
+  <body>
+    <h1>iOS 提取分流工具</h1>
+    <ul>
+      <li>
+        通过 iOS App 隐私报告，按 bundleID 提取域名、IP，来生成一个分流规则
+      </li>
+      <li>
+        该脚本纯前端本地运行，不会上传用户隐私数据，可打开控制台查看源码和网络请求动态
+      </li>
+    </ul>
+
+    <label
+      >选择输入文件（.ndjson）
+      <input id="fileInput" type="file" accept=".ndjson,.jsonl,.json" />
+    </label>
+
+    <div class="row">
+      <label style="flex: 1"
+        >bundleID
+        <input
+          id="bundleInput"
+          type="text"
+          placeholder="com.tencent.smoba"
+          style="width: 100%"
+        />
+      </label>
+      <label
+        >输出文件名
+        <input id="outName" type="text" value="domains.txt" />
+      </label>
+    </div>
+
+    <div class="row">
+      <button id="startBtn">开始处理</button>
+      <button id="clearBtn">清空结果</button>
+      <a id="downloadLink" style="display: none; margin-left: 8px">下载结果</a>
+    </div>
+
+    <div id="status" class="muted">等待文件与 bundleID 设置</div>
+
+    <label>日志 / 预览</label>
+    <textarea id="log" readonly></textarea>
+    <footer>
+      <p>&copy; 2026 提取分流工具. Powered by Ai 思密达.</p>
+    </footer>
+  </body>
+</html>
