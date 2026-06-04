@@ -1,5 +1,5 @@
 {
-  "name": "traffic",
+  "name": "worker-tool",
   "version": "26.5.30",
   "private": true,
   "scripts": {

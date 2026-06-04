@@ -49,6 +49,42 @@ function aggregateIPsTo24(ipArray) {
 
   return result.concat(others.sort());
 }
+/**
+ * 从 NDJSON 格式的隐私报告文本中提取所有不重复的 identifier 值
+ * @param {string} ndjsonText - 整个 ndjson 文件的文本内容
+ * @returns {string[]} 不重复的 identifier 数组
+ */
+function extractUniqueIdentifiers(ndjsonText) {
+  // 使用 Set 结构来自动去重
+  const uniqueIdentifiers = new Set();
+
+  // 按行分割文本
+  const lines = ndjsonText.split("\n");
+
+  for (let line of lines) {
+    // 去除两端空格
+    line = line.trim();
+
+    // 跳过空行
+    if (!line) continue;
+
+    try {
+      // 解析当前行的 JSON 对象
+      const record = JSON.parse(line);
+
+      // 提取 accessor 对象中的应用标识符 identifier (如 com.apple.xxx)
+      if (record.accessor && record.accessor.identifier) {
+        uniqueIdentifiers.add(record.accessor.identifier);
+      }
+    } catch (error) {
+      // 容错处理：如果某一行 JSON 格式非法，跳过并继续处理下一行
+      console.warn("解析 JSON 行失败，已跳过:", line, error);
+    }
+  }
+
+  // 将 Set 转换为普通数组返回
+  return Array.from(uniqueIdentifiers);
+}
 
 async function processFile(file, targetBundleID) {
   appendLog(`开始处理：${file.name}`);
@@ -155,6 +191,25 @@ async function processFile(file, targetBundleID) {
     appendLog("未找到匹配记录");
   }
 }
+
+fileInput.addEventListener("input", (event) => {
+  const file = event.target.files[0];
+  file
+    .text()
+    .then((text) => {
+      // 当文件读取成功后，调用提取函数
+      const uniqueIDs = extractUniqueIdentifiers(text);
+      bundleInput.innerHTML = "";
+      for (let op of uniqueIDs) {
+        let option = new Option(op, op);
+        bundleInput.add(option);
+      }
+    })
+    .catch((err) => {
+      console.error("读取文件失败：", err);
+      alert("读取文件失败，请重试");
+    });
+});
 
 startBtn.addEventListener("click", async () => {
   const file = fileInput.files[0];

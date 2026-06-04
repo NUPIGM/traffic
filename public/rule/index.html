@@ -5,52 +5,101 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>NDJSON 按 bundleID 提取域名、IP</title>
     <link rel="icon" href="favicon.svg" />
-    <link rel="stylesheet" href="Draw-iOS-rules.css" />
+    <link rel="stylesheet" href="tailwind.css" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
     <script src="Draw-iOS-rules.js" defer></script>
   </head>
-  <body>
-    <h1>iOS 提取分流工具</h1>
-    <ul>
-      <li>
-        通过 iOS App 隐私报告，按 bundleID 提取域名、IP，来生成一个分流规则
-      </li>
-      <li>
-        该脚本纯前端本地运行，不会上传用户隐私数据，可打开控制台查看源码和网络请求动态
-      </li>
-    </ul>
+  <body class="bg-gray-50 min-h-screen font-sans text-gray-800">
+    <div
+      class="absolute right-8 max-w-56 text-gray-600 font-semibold hidden lg:block"
+    >
+      <button type="button">关于</button>
+      <p id="about">
+        最初有这个想法是，数据流量时用的免流节点，打王者时延迟高，就要手动切换直连，很是麻烦。又没有王者的分流规则，才想到iOS有个隐私报告可以查看应用访问的域名和IP。就写了这个小工具
+      </p>
+    </div>
+    <main class="max-w-3xl mx-auto p-6">
+      <h1 class="text-3xl font-semibold mb-4">iOS 提取分流工具</h1>
 
-    <label
-      >选择输入文件（.ndjson）
-      <input id="fileInput" type="file" accept=".ndjson,.jsonl,.json" />
-    </label>
-
-    <div class="row">
-      <label style="flex: 1"
-        >bundleID
+      <ul class="list-disc pl-5 mb-6 text-gray-600">
+        <li>
+          通过 iOS App 隐私报告，按 bundleID 提取域名、IP，来生成一个分流规则
+        </li>
+        <li>
+          该脚本纯前端本地运行，不会上传用户隐私数据，可打开控制台查看源码和网络请求
+        </li>
+      </ul>
+      <h2 class="text-1xl font-semibold mb-4">小提示🔔：</h2>
+      <ol class="list-decimal pl-5 mb-6 text-gray-600">
+        <li>需要打开 设置 -> 隐私与安全性 -> 右上角导出。</li>
+        <li>选取 .ndjson 文件 -> 可更改导出文件名 -> 开始处理 即可。</li>
+      </ol>
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-2"
+          >选择输入文件（.ndjson）</label
+        >
         <input
-          id="bundleInput"
-          type="text"
-          placeholder="com.tencent.smoba"
-          style="width: 100%"
+          id="fileInput"
+          type="file"
+          accept=".ndjson,.jsonl,.json"
+          class="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-blue-600 file:text-white"
         />
-      </label>
-      <label
-        >输出文件名
-        <input id="outName" type="text" value="domains.txt" />
-      </label>
-    </div>
+      </div>
 
-    <div class="row">
-      <button id="startBtn">开始处理</button>
-      <button id="clearBtn">清空结果</button>
-      <a id="downloadLink" style="display: none; margin-left: 8px">下载结果</a>
-    </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <label class="block">
+          <span class="text-sm font-medium text-gray-700">bundleID</span>
+          <select
+            name=""
+            id="bundleInput"
+            class="mt-1 block w-full rounded border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
+          >
+            <option value="com.tencent.smoba">com.tencent.smoba</option>
+          </select>
+        </label>
+        <label class="block">
+          <span class="text-sm font-medium text-gray-700">输出文件名</span>
+          <input
+            id="outName"
+            type="text"
+            value="domains.txt"
+            class="mt-1 block w-full rounded border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
+          />
+        </label>
+      </div>
 
-    <div id="status" class="muted">等待文件与 bundleID 设置</div>
+      <div class="flex items-center gap-3 mb-3">
+        <button
+          id="startBtn"
+          class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          开始处理
+        </button>
+        <button
+          id="clearBtn"
+          class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300"
+        >
+          清空结果
+        </button>
+        <a id="downloadLink" class="hidden text-blue-600 underline ml-2"
+          >下载结果</a
+        >
+      </div>
 
-    <label>日志 / 预览</label>
-    <textarea id="log" readonly></textarea>
-    <footer>
+      <div id="status" class="text-sm text-gray-500 mb-3">
+        等待文件与 bundleID 设置
+      </div>
+
+      <label class="block text-sm font-medium text-gray-700 mb-2"
+        >日志 / 预览</label
+      >
+      <textarea
+        id="log"
+        readonly
+        class="w-full h-48 p-3 border rounded resize-vertical bg-white text-sm text-gray-800"
+      ></textarea>
+    </main>
+    <footer class="mx-auto text-center p-6 text-sm text-gray-500">
       <p>&copy; 2026 提取分流工具. Powered by Ai 思密达.</p>
     </footer>
   </body>
