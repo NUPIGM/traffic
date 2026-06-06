@@ -13,7 +13,7 @@
       name="description"
       content="测试您的网速，查询您的IP地址，同时具备网络延迟实时检测"
     />
-    <link rel="stylesheet" href="output.css" />
+    <link rel="stylesheet" href="/css/tailwind.css" />
     <script type="module" src="script.js" defer></script>
     <script type="module" src="/font/iconfont.js" defer></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
@@ -22,7 +22,7 @@
     class="text-slate-600 font-custom dark:bg-slate-800 dark:text-slate-300"
   >
     <header
-      class="flex h-16 max-w-5xl items-center justify-between px-6 sticky top-0 z-40 w-full mx-auto border-b border-slate-200 bg-white/80 backdrop-blur dark:bg-gray-700 dark:border-b-0"
+      class="flex h-16 max-w-5xl items-center justify-between px-6 sticky top-0 z-40 w-full mx-auto border-b rounded-b-2xl border-slate-200 bg-white/80 backdrop-blur dark:bg-gray-700 dark:border-b-0"
     >
       <div class="flex items-end gap-2">
         <svg class="icon w-6 h-6" aria-hidden="true">
@@ -32,8 +32,9 @@
           流量消耗器
         </h1>
       </div>
-      <a href="/" title="">
-        <svg class="icon w-6 h-6" aria-hidden="true">
+      <a href="/" title=""
+        >返回首页
+        <svg class="icon w-6 h-6 inline" aria-hidden="true">
           <use xlink:href="#icon-tiaozhuan"></use>
         </svg>
       </a>

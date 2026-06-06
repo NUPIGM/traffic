@@ -5,22 +5,39 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>NDJSON 按 bundleID 提取域名、IP</title>
     <link rel="icon" href="favicon.svg" />
-    <link rel="stylesheet" href="tailwind.css" />
+    <link rel="stylesheet" href="/css/tailwind.css" />
+    <script type="module" src="/font/iconfont.js" defer></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
     <script src="Draw-iOS-rules.js" defer></script>
   </head>
-  <body class="bg-gray-50 min-h-screen font-sans text-gray-800">
+  <body class="bg-gray-50 min-h-screen font-custom text-gray-800">
+    <header
+      class="flex h-16 max-w-4xl items-center justify-between px-6 sticky top-0 z-40 w-full mx-auto border-b rounded-b-2xl border-slate-200 bg-white/80 backdrop-blur dark:bg-gray-700 dark:border-b-0"
+    >
+      <div class="flex items-end gap-2">
+        <svg class="icon w-6 h-6" aria-hidden="true">
+          <use xlink:href="#icon-pingtaibingfashu-01"></use>
+        </svg>
+        <h1 class="text-lg font-bold text-slate-900 dark:text-white">
+          iOS 应用提取分流工具
+        </h1>
+      </div>
+      <a href="/" title=""
+        >返回首页
+        <svg class="icon w-6 h-6 inline" aria-hidden="true">
+          <use xlink:href="#icon-tiaozhuan"></use>
+        </svg>
+      </a>
+    </header>
     <div
       class="absolute right-8 max-w-56 text-gray-600 font-semibold hidden lg:block"
     >
-      <button type="button">关于</button>
+      <p>关于</p>
       <p id="about">
         最初有这个想法是，数据流量时用的免流节点，打王者时延迟高，就要手动切换直连，很是麻烦。又没有王者的分流规则，才想到iOS有个隐私报告可以查看应用访问的域名和IP。就写了这个小工具
       </p>
     </div>
-    <main class="max-w-3xl mx-auto p-6">
-      <h1 class="text-3xl font-semibold mb-4">iOS 提取分流工具</h1>
-
+    <main class="max-w-4xl mx-auto p-6">
       <ul class="list-disc pl-5 mb-6 text-gray-600">
         <li>
           通过 iOS App 隐私报告，按 bundleID 提取域名、IP，来生成一个分流规则
@@ -31,8 +48,12 @@
       </ul>
       <h2 class="text-1xl font-semibold mb-4">小提示🔔：</h2>
       <ol class="list-decimal pl-5 mb-6 text-gray-600">
-        <li>需要打开 设置 -> 隐私与安全性 -> 右上角导出。</li>
-        <li>选取 .ndjson 文件 -> 可更改导出文件名 -> 开始处理 即可。</li>
+        <li>需要打开 设置 -> 隐私与安全性 -> App 隐私报告 -> 右上角导出。</li>
+        <li>
+          选取 .ndjson 文件 -> 选择bundleID -> 可更改导出文件名 -> 开始处理
+          即可。
+        </li>
+        <li>然后可点击下载 domains.txt 文件</li>
       </ol>
       <div class="mb-4">
         <label class="block text-sm font-medium text-gray-700 mb-2"
@@ -54,7 +75,7 @@
             id="bundleInput"
             class="mt-1 block w-full rounded border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
           >
-            <option value="com.tencent.smoba">com.tencent.smoba</option>
+            <option value="com.tencent.smoba">选择应用列表</option>
           </select>
         </label>
         <label class="block">
@@ -81,8 +102,16 @@
         >
           清空结果
         </button>
-        <a id="downloadLink" class="hidden text-blue-600 underline ml-2"
-          >下载结果</a
+        <label for="onlyApple" class="text-gray-300">
+          <input type="checkbox" name="" id="onlyApple" disabled />
+          Apple系列(⊄safari)
+        </label>
+        <label
+          for="merge"
+          title="未完成"
+          class="px-4 py-2 rounded text-gray-300"
+          ><input type="checkbox" name="" id="merge" disabled />
+          合并子域(❌未完成)</label
         >
       </div>
 
@@ -90,6 +119,11 @@
         等待文件与 bundleID 设置
       </div>
 
+      <a
+        id="downloadLink"
+        class="hidden bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >下载结果</a
+      >
       <label class="block text-sm font-medium text-gray-700 mb-2"
         >日志 / 预览</label
       >
@@ -100,7 +134,26 @@
       ></textarea>
     </main>
     <footer class="mx-auto text-center p-6 text-sm text-gray-500">
+      <div class="">
+        <p>version: 26.6.5</p>
+        <ul>
+          <li>修复了:ipv6格式</li>
+          <li>更新了:自动获取bundleID列表</li>
+          <li>更新了:可以选择打包全部Apple应用，不含safari</li>
+        </ul>
+      </div>
+      <br />
       <p>&copy; 2026 提取分流工具. Powered by Ai 思密达.</p>
+      <p>
+        有问题请
+        <a
+          href="mailto:net-proxy@outlook.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-blue-400"
+          >@联系我🔗</a
+        >
+      </p>
     </footer>
   </body>
 </html>
