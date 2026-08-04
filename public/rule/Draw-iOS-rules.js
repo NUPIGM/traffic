@@ -167,7 +167,7 @@ function aggregateIPsTo24(ipArray) {
       result.push(`${prefix}.0/24`);
     } else {
       arr.sort((a, b) => a.localeCompare(b));
-      for (const ip of arr) result.push(ip);
+      for (const ip of arr) result.push(ip + "/32");
     }
   }
 

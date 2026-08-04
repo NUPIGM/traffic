@@ -6,7 +6,7 @@
     <title>NDJSON 按 bundleID 提取域名、IP</title>
     <link rel="icon" href="favicon.svg" />
     <link rel="stylesheet" href="/css/tailwind.css" />
-    <script type="module" src="/font/iconfont.js" defer></script>
+    <script type="module" src="iconfont.js" defer></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
     <script src="Draw-iOS-rules.js" defer></script>
   </head>
@@ -14,23 +14,21 @@
     <header
       class="flex h-16 max-w-4xl items-center justify-between px-6 sticky top-0 z-40 w-full mx-auto border-b rounded-b-2xl border-slate-200 bg-white/80 backdrop-blur dark:bg-gray-700 dark:border-b-0"
     >
-      <div class="flex items-end gap-2">
-        <svg class="icon w-6 h-6" aria-hidden="true">
-          <use xlink:href="#icon-pingtaibingfashu-01"></use>
-        </svg>
+      <div class="flex items-center gap-2">
+        <img src="favicon.svg" alt="" srcset="" class="w-5 h-5" />
         <h1 class="text-lg font-bold text-slate-900 dark:text-white">
           iOS 应用提取分流工具
         </h1>
       </div>
       <a href="/" title=""
         >返回首页
-        <svg class="icon w-6 h-6 inline" aria-hidden="true">
+        <svg class="icon w-5 h-5 inline text-black">
           <use xlink:href="#icon-tiaozhuan"></use>
         </svg>
       </a>
     </header>
     <div
-      class="absolute right-8 max-w-56 text-gray-600 font-semibold hidden lg:block"
+      class="absolute right-8 max-w-56 py-6 text-gray-600 font-semibold hidden lg:block"
     >
       <p>关于</p>
       <p id="about">
@@ -63,17 +61,17 @@
           id="fileInput"
           type="file"
           accept=".ndjson,.jsonl,.json"
-          class="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-blue-600 file:text-white"
+          class="hover:cursor-pointer hover:file:bg-blue-700 block w-fit text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-blue-600 file:text-white"
         />
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <label class="block">
           <span class="text-sm font-medium text-gray-700">bundleID</span>
           <select
             name=""
             id="bundleInput"
-            class="mt-1 block w-full rounded border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
+            class="mt-1 block w-full hover:bg-gray-100 rounded border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
           >
             <option value="com.tencent.smoba">选择应用列表</option>
           </select>
@@ -84,24 +82,11 @@
             id="outName"
             type="text"
             value="domains.txt"
-            class="mt-1 block w-full rounded border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
+            class="mt-1 block w-full hover:bg-gray-100 rounded border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
           />
         </label>
       </div>
-
-      <div class="flex items-center gap-3 mb-3">
-        <button
-          id="startBtn"
-          class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          开始处理
-        </button>
-        <button
-          id="clearBtn"
-          class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300"
-        >
-          清空结果
-        </button>
+      <div class="p-4">
         <label for="onlyApple" class="text-gray-300">
           <input type="checkbox" name="" id="onlyApple" disabled />
           Apple系列(⊄safari)
@@ -109,51 +94,90 @@
         <label
           for="merge"
           title="未完成"
-          class="px-4 py-2 rounded text-gray-300"
+          class="px-4 py-2 rounded text-gray-300 hover:cursor-not-allowed"
           ><input type="checkbox" name="" id="merge" disabled />
           合并子域(❌未完成)</label
         >
+      </div>
+      <div class="flex items-center gap-3 mb-3">
+        <button
+          id="startBtn"
+          class="hover:cursor-pointer bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          开始处理
+        </button>
+        <button
+          id="clearBtn"
+          class="hover:cursor-pointer bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300"
+        >
+          清空结果
+        </button>
       </div>
 
       <div id="status" class="text-sm text-gray-500 mb-3">
         等待文件与 bundleID 设置
       </div>
-
       <a
         id="downloadLink"
-        class="hidden bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        class="hover:cursor-pointer hidden bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
         >下载结果</a
       >
+      <svg class="icon inline w-5 h-5">
+        <use xlink:href="#icon-xiazai"></use>
+      </svg>
       <label class="block text-sm font-medium text-gray-700 mb-2"
         >日志 / 预览</label
       >
       <textarea
         id="log"
         readonly
-        class="w-full h-48 p-3 border rounded resize-vertical bg-white text-sm text-gray-800"
+        class="w-full h-70 p-3 border rounded resize-vertical bg-white text-sm text-gray-800"
       ></textarea>
     </main>
     <footer class="mx-auto text-center p-6 text-sm text-gray-500">
-      <div class="">
-        <p>version: 26.6.5</p>
+      <div class="group hover:cursor-progress relative">
         <ul>
+          <li>version: 26.6.7</li>
+          <li>优化了:一些样式</li>
+          <li>添加了:联系方法</li>
+        </ul>
+        <ul
+          class="hidden group-hover:inline absolute right-1/12 bottom-0 text-left backdrop-blur-2xl shadow-xl rounded-xl max-w-sm h-52 overflow-scroll p-6"
+        >
+          <li>version: 26.6.6</li>
+          <li>修复了:ip格式问题</li>
+          <br />
+          <hr />
+          <br />
+          <li>version: 26.6.5</li>
           <li>修复了:ipv6格式</li>
           <li>更新了:自动获取bundleID列表</li>
           <li>更新了:可以选择打包全部Apple应用，不含safari</li>
         </ul>
       </div>
       <br />
-      <p>&copy; 2026 提取分流工具. Powered by Ai 思密达.</p>
       <p>
-        有问题请
+        有问题可以@我
         <a
           href="mailto:net-proxy@outlook.com"
           target="_blank"
           rel="noopener noreferrer"
           class="text-blue-400"
-          >@联系我🔗</a
-        >
+          ><svg class="icon inline w-5 h-5">
+            <use xlink:href="#icon-mail"></use></svg
+        ></a>
+        <a href="https://github.com/NUPIGM/worker-tool" target="_blank">
+          <svg class="icon inline text-white w-5 h-5">
+            <use xlink:href="#icon-github"></use>
+          </svg>
+        </a>
+        <a href="https://www.nodeseek.com/post-758885-1" target="_blank">
+          <svg class="icon inline text-white w-5 h-5">
+            <use xlink:href="#icon-nodeseek"></use>
+          </svg>
+        </a>
       </p>
+      <p>&copy; 2026 提取分流工具.</p>
     </footer>
   </body>
 </html>
